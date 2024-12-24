@@ -2,6 +2,7 @@
 using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace EdoTensai
@@ -36,7 +37,7 @@ namespace EdoTensai
             return activePawns.Contains(storedPawn);
         }
 
-        public bool AddStoredPawn(Pawn pawn, PawnEquipmentSnapshot equipmentSnapshot)
+        public bool AddStoredPawn(Pawn pawn, PawnEquipmentSnapshot equipmentSnapshot, float quality = 1f)
         {
             if (!storedPawns.Any(x => x.pawn == pawn))
             {
@@ -46,20 +47,26 @@ namespace EdoTensai
                 if (!Find.WorldPawns.Contains(pawn))
                     Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.KeepForever);
 
-                Log.Message($"Storing Pawn {pawn.Label} to {this.parent.pawn.Label}");
-                storedPawns.Add(new StoredEdoPawn { pawn = pawn, equipment = equipmentSnapshot });
-                SetupSummon(pawn);
+                Log.Message($"Storing Pawn {pawn.Label} to {this.parent.pawn.Label} with quality {quality:P0}");
+                storedPawns.Add(new StoredEdoPawn
+                {
+                    pawn = pawn,
+                    equipment = equipmentSnapshot,
+                    reanimationQuality = quality
+                });
+                SetupSummon(pawn, quality);
                 return true;
             }
             return false;
         }
-        public void SetupSummon(Pawn pawn)
+        public void SetupSummon(Pawn pawn, float quality)
         {
             Hediff edoHediff = pawn.health.GetOrAddHediff(EdoDefOf.WN_EdoTensaiHediff);
             HediffComp_EdoTensaiPawn edoTensaiPawn = edoHediff.TryGetComp<HediffComp_EdoTensaiPawn>();
 
             if (edoTensaiPawn != null)
             {
+                edoTensaiPawn.parent.Severity = Mathf.Clamp(quality, 0.1f, 1.2f);
                 edoTensaiPawn.SetSlaveMaster(this.parent.pawn);
             }
         }
@@ -79,7 +86,7 @@ namespace EdoTensai
             }
         }
 
-        public bool SummonPawn(Pawn storedPawn)
+        public bool SummonPawn(Pawn storedPawn, IntVec3 position = default(IntVec3), bool ShowCoffin = true)
         {
             var stored = storedPawns.FirstOrDefault(x => x.pawn == storedPawn);
             if (stored != null)
@@ -89,7 +96,16 @@ namespace EdoTensai
 
                 RestorePawn(stored);
 
-                GenSpawn.Spawn(stored.pawn, Pawn.Position, Pawn.Map);
+
+                IntVec3 usePosition = position != default(IntVec3) ? position : CellFinder.RandomClosewalkCellNear(Pawn.Position, Pawn.Map, 3);
+
+                if (EdoDefOf.EdoTensaiCoffinEffect != null && ShowCoffin)
+                {
+                    EdoDefOf.EdoTensaiCoffinEffect.SpawnMaintained(usePosition, Pawn.Map);
+                }
+
+
+                GenSpawn.Spawn(stored.pawn, usePosition, Pawn.Map);
 
                 if (stored.pawn.Faction != Faction.OfPlayer)
                 {
@@ -111,6 +127,11 @@ namespace EdoTensai
         {
             if (activePawns.Remove(pawn))
             {
+                if (EdoDefOf.EdoTensaiCoffinEffect != null)
+                {
+                    EdoDefOf.EdoTensaiCoffinEffect.SpawnMaintained(pawn.Position, Pawn.Map);
+                }
+
                 if (pawn.Spawned)
                 {
                     pawn.DeSpawn();

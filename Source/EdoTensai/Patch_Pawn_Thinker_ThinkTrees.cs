@@ -96,5 +96,34 @@ namespace EdoTensai
         }
     }
 
+    [HarmonyPatch(typeof(RecipeWorker))]
+    [HarmonyPatch("AvailableOnNow")]
+    [HarmonyPatch(new[] { typeof(Thing), typeof(BodyPartRecord) })]
+    public static class Recipe_AvailableOnNow_Patch
+    {
+        public static void Postfix(ref bool __result, Thing thing, BodyPartRecord part)
+        {
+            if (__result && thing is Pawn pawn)
+            {
+                if (pawn.health.hediffSet.HasHediff(EdoDefOf.WN_EdoTensaiHediff))
+                {
+                    __result = false;
+                }
+            }
+        }
+    }
 
+    [HarmonyPatch(typeof(RecipeWorker))]
+    [HarmonyPatch("AvailableReport")]
+    [HarmonyPatch(new[] { typeof(Thing), typeof(BodyPartRecord) })]
+    public static class Recipe_AvailableReport_Patch
+    {
+        public static void Postfix(ref AcceptanceReport __result, Thing thing, BodyPartRecord part)
+        {
+            if (thing is Pawn pawn && pawn.health.hediffSet.HasHediff(EdoDefOf.WN_EdoTensaiHediff))
+            {
+                __result = false;
+            }
+        }
+    }
 }

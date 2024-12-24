@@ -31,6 +31,16 @@ namespace EdoTensai
                 return;
             }
 
+            if (sacrifice.health.hediffSet.HasHediff(EdoDefOf.WN_EdoTensaiHediff))
+            {
+
+                Messages.Message($"cant target edo tensai pawns", MessageTypeDefOf.NeutralEvent);
+                return;
+            }
+
+
+            IntVec3 spawnPosition = sacrifice.Position;
+
             Pawn targetPawn = dnaSample.SourcePawn;
             if (targetPawn == null)
             {
@@ -48,18 +58,18 @@ namespace EdoTensai
                 return;
             }
 
-            EdoDefOf.EdoTensaiRitualEffect.Spawn(sacrifice.Position, this.pawn.Map);
+            EdoDefOf.EdoTensaiRitualEffect.Spawn(spawnPosition, this.pawn.Map);
 
             sacrifice.Kill(null, controllerHediff.parent);
 
             sacrifice.DestroyPawnAndCorpse();
 
-            if (controllerHediff.AddStoredPawn(targetPawn, storedPawnData))
+            if (controllerHediff.AddStoredPawn(targetPawn, storedPawnData, dnaSample.ReanimationQuality))
             {
                 Messages.Message($"{targetPawn.Label} has been reanimated through Edo Tensei!", MessageTypeDefOf.NeutralEvent);
                 dnaSample.parent.Destroy();
 
-                if (controllerHediff.SummonPawn(targetPawn))
+                if (controllerHediff.SummonPawn(targetPawn, spawnPosition, false))
                 {
 
                 }

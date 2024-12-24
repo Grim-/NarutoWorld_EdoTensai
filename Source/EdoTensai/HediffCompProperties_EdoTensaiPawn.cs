@@ -99,6 +99,18 @@ namespace EdoTensai
                     item.Value.energy = item.Value.MaxEnergy;
                 }
             }
+
+
+            if (pawn.health?.hediffSet?.hediffs != null)
+            {
+                Hediff hediffToHeal = pawn.health.hediffSet.hediffs
+                    .FirstOrDefault(h => h.def.isBad && h.def != EdoDefOf.WN_EdoTensaiHediff);
+
+                if (hediffToHeal != null)
+                {
+                    HealthUtility.Cure(hediffToHeal);
+                }
+            }
         }
 
         private void HandleNeedsAndSupress(Pawn pawn)
@@ -108,18 +120,8 @@ namespace EdoTensai
                 need.CurLevel = need.MaxLevel;
             }
 
-            if (pawn.health?.hediffSet?.hediffs != null)
-            {
-                Hediff hediffToHeal = pawn.health.hediffSet.hediffs
-                    .FirstOrDefault(h => h.def.isBad && h.def != EdoDefOf.WN_EdoTensaiHediff);
-
-                if (hediffToHeal != null)
-                {
-                    pawn.health.hediffSet.hediffs.Remove(hediffToHeal);
-                }
-            }
         }
-
+        
         private void ApplyZombieColor(Pawn pawn)
         {
             pawn.story.skinColorOverride = Color.grey;

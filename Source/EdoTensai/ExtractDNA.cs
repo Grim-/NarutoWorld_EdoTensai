@@ -1,4 +1,5 @@
-﻿using RimWorld.Planet;
+﻿using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Ability = TaranMagicFramework.Ability;
 
@@ -14,6 +15,14 @@ namespace EdoTensai
                 Pawn targetPawn = corpse.InnerPawn;
                 if (targetPawn != null)
                 {
+                    if (targetPawn.health.hediffSet.HasHediff(EdoDefOf.WN_EdoTensaiHediff))
+                    {
+
+                        Messages.Message($"cant target edo tensai pawns", MessageTypeDefOf.NeutralEvent);                    
+                        return;
+                    }
+
+
                     if (!Find.WorldPawns.Contains(targetPawn))
                     {
                         Find.WorldPawns.PassToWorld(targetPawn, PawnDiscardDecideMode.KeepForever);
@@ -23,8 +32,13 @@ namespace EdoTensai
                     CompDNASample comp = dnaSample.TryGetComp<CompDNASample>();
                     if (comp != null)
                     {
-                        comp.SetSourcePawn(targetPawn);
+                        float medicalSkill = this.pawn.skills.GetSkill(SkillDefOf.Medicine).Level;
+                        float quality = (medicalSkill / 20f) * 1.2f;
+
+                        comp.SetSourcePawn(targetPawn, quality);
                         GenSpawn.Spawn(dnaSample, corpse.Position, this.pawn.Map);
+
+                        Messages.Message($"DNA extracted with {quality:P0} reanimation potential.", MessageTypeDefOf.NeutralEvent);
                     }
 
                     if (!corpse.Destroyed)

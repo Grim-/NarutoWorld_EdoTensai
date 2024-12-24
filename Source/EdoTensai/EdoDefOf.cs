@@ -23,5 +23,6 @@ namespace EdoTensai
         public static TaranMagicFramework.AbilityDef WN_EdoTensaiExtractDNA;
 
         public static EffecterDef EdoTensaiRitualEffect;
+        public static EffecterDef EdoTensaiCoffinEffect;
     }
 }
