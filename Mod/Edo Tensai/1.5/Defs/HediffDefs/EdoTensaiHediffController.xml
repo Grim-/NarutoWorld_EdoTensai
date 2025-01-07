@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef>
+    <defName>WN_EdoTensaiController</defName>
+    <label>Edo Tensai (Master)</label>
+    <description>This pawn can summon ninja with impure world reincarnation jutsu.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+    <initialSeverity>0.1</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="EdoTensai.HediffCompProperties_EdoTensaiController" />
+    </comps>
+  </HediffDef>
+</Defs>

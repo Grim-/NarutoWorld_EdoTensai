@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="MoteBase">
+      <defName>Mote_EdoTensaiRitual</defName>
+      <thingClass>MoteAttached</thingClass>
+      <graphicData>
+          <texPath>EdoTensaiRitual2</texPath>
+          <graphicClass>Graphic_Mote</graphicClass>
+          <shaderType>Mote</shaderType>
+          <drawSize>3</drawSize>
+      </graphicData>
+      <altitudeLayer>MoteOverhead</altitudeLayer>
+      <mote>
+          <fadeInTime>0.2</fadeInTime>
+          <solidTime>5</solidTime>
+          <fadeOutTime>1.2</fadeOutTime>
+      </mote>
+  </ThingDef>
+
+  <EffecterDef>
+      <defName>EdoTensaiCoffinEffect</defName>
+          <maintainTicks>2400</maintainTicks>
+      <children>
+          <li>
+              <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+              <moteDef>EdoTensaiCoffinMote</moteDef>
+              <spawnLocType>OnTarget</spawnLocType>
+              <speed>0</speed>
+              <angle>0</angle>
+              <rotation>0</rotation>
+              <positionRadius>0</positionRadius>
+              <scale>1</scale>
+              <rotationRate>0</rotationRate>
+              <burstCount>1</burstCount>
+          </li>
+      </children>
+  </EffecterDef>
+
+  <ThingDef ParentName="MoteBase">
+      <defName>EdoTensaiCoffinMote</defName>
+      <thingClass>MoteAttached</thingClass>
+      <graphicData>
+          <texPath>EdoTensaiCoffin</texPath>
+          <graphicClass>Graphic_Mote</graphicClass>
+          <shaderType>Mote</shaderType>
+          <drawSize>2</drawSize>
+      </graphicData>
+      <altitudeLayer>MoteOverhead</altitudeLayer>
+      <mote>
+          <fadeInTime>0.2</fadeInTime>
+          <solidTime>2</solidTime>
+          <fadeOutTime>1.2</fadeOutTime>
+      </mote>
+  </ThingDef>
+
+  <EffecterDef>
+      <defName>EdoTensaiRitualEffect</defName>
+      <children>
+          <li>
+              <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+              <moteDef>Mote_EdoTensaiRitual</moteDef>
+              <spawnLocType>OnTarget</spawnLocType>
+              <speed>0</speed>
+              <angle>0</angle>
+              <rotation>0</rotation>
+              <positionRadius>0</positionRadius>
+              <scale>1.0~1.5</scale>
+              <rotationRate>0</rotationRate>
+              <burstCount>1</burstCount>
+          </li>
+      </children>
+  </EffecterDef>
+</Defs>

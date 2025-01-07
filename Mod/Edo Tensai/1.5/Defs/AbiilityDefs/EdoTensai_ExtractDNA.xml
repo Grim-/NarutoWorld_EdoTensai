@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TaranMagicFramework.AbilityDef ParentName="WN_NinjutsuBasicAbilityBase">
+    <defName>WN_EdoTensaiExtractDNA</defName>
+    <label>Extract DNA</label>
+    <description>Take samples of a dead pawn, you can use the Impure world Reanimation Jutsu and a living sacrifice. The targets body does not survive this process.</description>
+    <uiPosition>(0, 0.65)</uiPosition>
+    <uiSkillIcon>UI/Icons/Genjutsu/Kai</uiSkillIcon>
+    <abilityClass>EdoTensai.ExtractDNA</abilityClass>
+    <abilityTiers>
+      <li>WN_EdoTensaiExtractDNA_Tier1</li>
+    </abilityTiers>
+  </TaranMagicFramework.AbilityDef>
+
+  <TaranMagicFramework.AbilityTierDef Name="WN_EdoTensaiExtraDNA_Base">
+    <defName>WN_EdoTensaiExtractDNA_Tier1</defName>
+    <label>Extract DNA</label>
+    <acquireRequirement>
+      <minLevel>0</minLevel>
+    </acquireRequirement>
+    <energyCost>5</energyCost>
+    <iconTexPath>UI/Icons/Genjutsu/Kai</iconTexPath>
+    <cooldownTicks>250</cooldownTicks>
+    <xpGainOnCast>0</xpGainOnCast>
+    <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <canTargetHumans>true</canTargetHumans>
+          <canTargetCorpses>true</canTargetCorpses>
+          <canTargetPawns>true</canTargetPawns>
+    </targetingParameters>
+  </TaranMagicFramework.AbilityTierDef>
+
+</Defs>

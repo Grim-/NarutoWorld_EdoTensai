@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>EdoTensai_DNASample</defName>
+    <label>DNA sample</label>
+    <description>A preserved sample of DNA taken from a corpse. Used in Edo Tensei reanimation rituals.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/ArchiteCapsule</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Mass>0.5</Mass>
+      <DeteriorationRate>2.0</DeteriorationRate>
+      <MarketValue>50</MarketValue>
+    </statBases>
+    <orderedTakeGroup>Medicine</orderedTakeGroup>
+    <thingCategories>
+      <li>Medicine</li>
+      <li>FoodMeals</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+    <comps>
+      <li Class="EdoTensai.CompProperties_DNASample">
+        <compClass>EdoTensai.CompDNASample</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

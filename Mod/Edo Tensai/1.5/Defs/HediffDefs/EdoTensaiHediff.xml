@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef>
+      <defName>WN_EdoTensaiHediff</defName>
+      <label>Edo Tensai (Summon)</label>
+      <description>This pawn has been reanimated using Edo Tensai Jutsu.</description>
+      <hediffClass>HediffWithComps</hediffClass>
+      <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+      <initialSeverity>0.01</initialSeverity>
+      <maxSeverity>1.2</maxSeverity>
+      <isBad>false</isBad>
+      <blocksSleeping>true</blocksSleeping>
+      <everCurableByItem>false</everCurableByItem>
+      <preventsDeath>true</preventsDeath>
+      <stages>
+          <!-- Terrible reanimation (0-20%) -->
+          <li>
+              <minSeverity>0</minSeverity>
+              <label>severely imperfect reanimation</label>
+              <statFactors>
+                <WN_MaxChakraEnergy>0.6</WN_MaxChakraEnergy>
+                <WN_ChakraUsageMultiplier>1.4</WN_ChakraUsageMultiplier>
+                <WN_ChakraNinExperienceRate>0</WN_ChakraNinExperienceRate>
+                <WN_ChakraGenExperienceRate>0</WN_ChakraGenExperienceRate>
+                <Fertility>0</Fertility>
+              </statFactors>
+              <capMods>
+                  <li>
+                      <capacity>Consciousness</capacity>
+                      <offset>-0.3</offset>
+                  </li>
+                  <li>
+                      <capacity>Moving</capacity>
+                      <offset>-0.15</offset>
+                  </li>
+                  <li>
+                      <capacity>Manipulation</capacity>
+                      <offset>-0.15</offset>
+                  </li>
+              </capMods>
+          </li>
+          <!-- Poor reanimation (20-40%) -->
+          <li>
+              <minSeverity>0.2</minSeverity>
+              <label>imperfect reanimation</label>
+              <statFactors>
+                <WN_MaxChakraEnergy>0.8</WN_MaxChakraEnergy>
+                <WN_ChakraUsageMultiplier>1.2</WN_ChakraUsageMultiplier>
+                <WN_ChakraNinExperienceRate>0</WN_ChakraNinExperienceRate>
+                <WN_ChakraGenExperienceRate>0</WN_ChakraGenExperienceRate>
+                <Fertility>0</Fertility>
+              </statFactors>
+              <capMods>
+                  <li>
+                      <capacity>Consciousness</capacity>
+                      <offset>-0.15</offset>
+                  </li>
+                  <li>
+                      <capacity>Moving</capacity>
+                      <offset>-0.1</offset>
+                  </li>
+              </capMods>
+          </li>
+          <!-- Decent reanimation (40-60%) -->
+          <li>
+              <minSeverity>0.4</minSeverity>
+              <label>partial reanimation</label>
+              <statFactors>
+                <WN_MaxChakraEnergy>1.0</WN_MaxChakraEnergy>
+                <WN_ChakraUsageMultiplier>1.0</WN_ChakraUsageMultiplier>
+                <WN_ChakraNinExperienceRate>0</WN_ChakraNinExperienceRate>
+                <WN_ChakraGenExperienceRate>0</WN_ChakraGenExperienceRate>
+                <Fertility>0</Fertility>
+              </statFactors>
+          </li>
+          <!-- Good reanimation (60-80%) -->
+          <li>
+              <minSeverity>0.6</minSeverity>
+              <label>good reanimation</label>
+              <statFactors>
+                <WN_MaxChakraEnergy>1.2</WN_MaxChakraEnergy>
+                <WN_ChakraUsageMultiplier>0.9</WN_ChakraUsageMultiplier>
+                <MeleeHitChance>1.1</MeleeHitChance>
+                <MeleeDamageFactor>1.1</MeleeDamageFactor>
+                <WN_ChakraNinExperienceRate>0</WN_ChakraNinExperienceRate>
+                <WN_ChakraGenExperienceRate>0</WN_ChakraGenExperienceRate>
+                <Fertility>0</Fertility>
+              </statFactors>
+          </li>
+          <!-- Perfect reanimation (80-100%) -->
+          <li>
+              <minSeverity>0.8</minSeverity>
+              <label>perfect reanimation</label>
+              <statFactors>
+                <WN_MaxChakraEnergy>1.4</WN_MaxChakraEnergy>
+                <WN_ChakraUsageMultiplier>0.8</WN_ChakraUsageMultiplier>
+                <MeleeHitChance>1.15</MeleeHitChance>
+                <MeleeDamageFactor>1.15</MeleeDamageFactor>
+                <WN_ChakraNinExperienceRate>0</WN_ChakraNinExperienceRate>
+                <WN_ChakraGenExperienceRate>0</WN_ChakraGenExperienceRate>
+                <Fertility>0</Fertility>
+              </statFactors>
+          </li>
+          <!-- Beyond Perfect (100-120%) -->
+          <li>
+              <minSeverity>1.0</minSeverity>
+              <label>enhanced reanimation</label>
+              <statFactors>
+                <WN_MaxChakraEnergy>1.6</WN_MaxChakraEnergy>
+                <WN_ChakraUsageMultiplier>0.7</WN_ChakraUsageMultiplier>
+                <MeleeHitChance>1.2</MeleeHitChance>
+                <MeleeDamageFactor>1.2</MeleeDamageFactor>
+                <WN_ChakraNinExperienceRate>0</WN_ChakraNinExperienceRate>
+                <WN_ChakraGenExperienceRate>0</WN_ChakraGenExperienceRate>
+                <Fertility>0</Fertility>
+              </statFactors>
+          </li>
+      </stages>
+      <comps>
+        <li Class="EdoTensai.HediffCompProperties_EdoTensaiPawn" />
+      </comps>
+    </HediffDef>
+</Defs>

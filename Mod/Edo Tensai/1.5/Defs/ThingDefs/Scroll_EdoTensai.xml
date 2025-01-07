@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="WN_Scroll">
+    <defName>WN_EdoTensaiScroll</defName>
+    <label>EdoTensai Scroll: Torture</label>
+    <description>A scroll that teaches a forbidden genjutsu.</description>
+    <statBases>
+      <MarketValue>1200</MarketValue>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Item/Scrolls/GenjutsuScroll</texPath>
+    </graphicData>
+    <comps>
+      <li Class="NarutoMod.CompProperties_Scroll">
+        <abilityClass>WN_Ninjutsu</abilityClass>
+        <abilityToLearn>WN_EdoTensai</abilityToLearn>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

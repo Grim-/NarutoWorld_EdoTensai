@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<TaranMagicFramework.AbilityDef ParentName="WN_NinjutsuBasicAbilityBase">
+  <defName>WN_EdoTensai</defName>
+  <label>edo tensai ritual</label>
+  <description>Using a DNA sample obtained from a corpse inconjunction with this ritual you can bind the dead to serve.</description>
+  <uiPosition>(0, 0.65)</uiPosition>
+  <uiSkillIcon>UI/Icons/Genjutsu/Kai</uiSkillIcon>
+  <abilityClass>EdoTensai.EdoTensaiReanimation</abilityClass>
+  <abilityTiers>
+    <li>WN_EdoTensai_Tier1</li>
+  </abilityTiers>
+</TaranMagicFramework.AbilityDef>
+
+<TaranMagicFramework.AbilityTierDef Name="WN_EdoTensai_Base">
+  <defName>WN_EdoTensai_Tier1</defName>
+  <label>edo tensai</label>
+  <acquireRequirement>
+    <minLevel>0</minLevel>
+  </acquireRequirement>
+  <energyCost>25</energyCost>
+  <iconTexPath>UI/Icons/Genjutsu/Kai</iconTexPath>
+  <cooldownTicks>2500</cooldownTicks>
+  <xpGainOnCast>10</xpGainOnCast>
+  <targetingParameters>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetAnimals>false</canTargetAnimals>
+        <canTargetMechs>false</canTargetMechs>
+        <canTargetHumans>true</canTargetHumans>
+        <canTargetCorpses>true</canTargetCorpses>
+        <canTargetPawns>true</canTargetPawns>
+  </targetingParameters>
+</TaranMagicFramework.AbilityTierDef>
+</Defs>
